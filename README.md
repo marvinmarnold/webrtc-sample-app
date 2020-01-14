@@ -5,12 +5,12 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 ## Preparation
 - Prepare: Review [Jitsi code](https://github.com/jitsi/jitsi-meet/tree/master/react)
 - Wireframes: [here](https://docs.geeky.rocks/shared/X1witnE9_cfgg-3uia9VVm0D1_lwjvGmdpT62SPpDSE)
-- State definition: {peers: {ip: {status}}, controls: {isVideoOn, isAudioOn}}
+- State definition: {isConnected, controls: {isVideoOn, isAudioOn}}
 
 ## Plan
 - [x] Create empty Gatsby project 
 - [x] Install [react-redux](https://react-redux.js.org/introduction/quick-start)
-- [ ] Add a con/disconnect button that toggles and updates redux state
+- [x] Add a con/disconnect button that toggles and updates redux state
 - [ ] Install [AdapterJS](https://github.com/webrtcHacks/adapter)
 - [ ] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
 - [ ] Create a connection using hardcoded details
