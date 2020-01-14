@@ -10,8 +10,16 @@
   <meta name="description" content="This is a simple video conferencing app with WebRTC that has clean management of connection state and an easy UX to video chat with other people by sharing a websocket link.">
   <meta name="author" content="Marvin Arnold">
 
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+
  <!-- We will put our React component inside this div. -->
-  <div id="like_button_container"></div>
+  <div id="like_button_container" class="container">
+    <h1>test</h1>
+  </div>
 
 </head>
 
@@ -21,8 +29,12 @@
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-transition-group/dist/react-transition-group.js" crossorigin></script>
+
+    <!-- Reactstrap -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js" crossorigin></script>
 
     <!-- Load our React component. -->
-    <script src="like_button.js"></script>
+    <script src="index.js"></script>
 </body>
 </html>
