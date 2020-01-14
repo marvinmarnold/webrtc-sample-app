@@ -1,0 +1,28 @@
+<!doctype html>
+
+<!-- Template taken from https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605 -->
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>WebRTC Sample App</title>
+  <meta name="description" content="This is a simple video conferencing app with WebRTC that has clean management of connection state and an easy UX to video chat with other people by sharing a websocket link.">
+  <meta name="author" content="Marvin Arnold">
+
+ <!-- We will put our React component inside this div. -->
+  <div id="like_button_container"></div>
+
+</head>
+
+<body>
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Load our React component. -->
+    <script src="like_button.js"></script>
+</body>
+</html>
