@@ -9,7 +9,7 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 
 ## Plan
 - [x] Create empty Gatsby project 
-- [ ] Install [react-redux](https://react-redux.js.org/introduction/quick-start)
+- [x] Install [react-redux](https://react-redux.js.org/introduction/quick-start)
 - [ ] Add a con/disconnect button that toggles and updates redux state
 - [ ] Install [AdapterJS](https://github.com/webrtcHacks/adapter)
 - [ ] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen

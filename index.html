@@ -15,26 +15,83 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
- <!-- We will put our React component inside this div. -->
-  <div id="like_button_container" class="container">
-    <h1>test</h1>
-  </div>
-
 </head>
 
 <body>
+
+
 
     <!-- Load React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
     <script src="https://unpkg.com/react-transition-group/dist/react-transition-group.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.js" crossorigin></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-redux/7.1.3/react-redux.js" crossorigin></script>
+
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin></script>
+
 
     <!-- Reactstrap -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/reactstrap/4.8.0/reactstrap.min.js" crossorigin></script>
 
+
+         <!-- We will put our React component inside this div. -->
+    <div id="chat_window_container" class="container">
+      <h1>Loading...</h1>
+    </div>
+
+
+
     <!-- Load our React component. -->
-    <script src="index.js"></script>
+    <!-- <script type="text/babel" src="index.jsx"></script> -->
+    <script type="text/babel">
+      
+const e = React.createElement;
+
+class ChatWindow extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  renderChat() {
+
+    // return e(
+    //   'button',
+    //   { onClick: () => this.setState({ liked: true }) },
+    //   'Like'
+    // );
+
+    // return e(ReactRedux.Provider, store, 'TEST')
+    return e('h1', null, 'TEST')
+    // return <h1>yo</h1>
+
+  }
+
+  render() {
+    // if (this.state.liked) {
+    //   return 'You liked this.';
+    // }
+
+    return this.renderChat();
+  }
+}
+
+function connectionReducer(state, action) {
+ switch(action.type) {
+     default : return state;
+   }
+}
+
+
+ const store = Redux.createStore(connectionReducer);
+
+const domContainer = document.querySelector('#chat_window_container');
+ReactDOM.render(<ReactRedux.Provider store={store}><ChatWindow /></ReactRedux.Provider>, domContainer);
+
+
+    </script>
+
+
 </body>
 </html>
