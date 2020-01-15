@@ -1,7 +1,5 @@
 <!doctype html>
-
 <!-- Template taken from https://gist.github.com/gaearon/6668a1f6986742109c00a581ce704605 -->
-
 <html lang="en">
 <head>
   <meta charset="utf-8">
@@ -18,9 +16,6 @@
 </head>
 
 <body>
-
-
-
     <!-- Load React. -->
     <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
     <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
@@ -39,12 +34,10 @@
     <script src="https://webrtchacks.github.io/adapter/adapter-latest.js" crossorigin></script>
 
 
-         <!-- We will put our React component inside this div. -->
+     <!-- We will put our React component inside this div. -->
     <div id="chat_window_container" class="container">
       <h1>Loading...</h1>
     </div>
-
-
 
     <!-- Load our React component. -->
     <!-- <script type="text/babel" src="index.jsx"></script> -->
@@ -53,18 +46,27 @@
       const e = React.createElement;
 
       // Redux state management
+      const actionConnectionToggle = 'CONNECTION_TOGGLE'
+      const actionConnectionInit = 'CONNECTION_INITIALIZED'
+
       function applyToggleConnection(state, action) {
         const newState = Object.assign({}, state, {isConnected: !state.isConnected})
         return newState
       }
 
+      function applyConnectionInit(state, action) {
+        const newState = Object.assign({}, state, {isConnected: false})
+        return newState
+      }
+
       function connectionReducer(state, action) {
        switch(action.type) {
-          case 'CONNECTION_TOGGLE': {
-            return applyToggleConnection(state, action)
-          }
-           default : return state;
-
+            case actionConnectionToggle: {
+              return applyToggleConnection(state, action)
+            } case actionConnectionInit: {
+              return applyConnectionInit(state, action)
+            }
+            default : return state;
          }
       }
 
@@ -72,10 +74,16 @@
 
       const store = Redux.createStore(connectionReducer, initialState);
 
+      // WebRTC
+      const config = {sdpSemantics: "unified-plan"} // alternatively, plan-b
+      let pc1 = new RTCPeerConnection(config);
+      console.log(pc1.connectionState)
+
       // UI
       class ChatWindow extends React.Component {
         constructor(props) {
           super(props);
+
         }
 
         renderChat() {
@@ -98,7 +106,5 @@
       store.subscribe(render)
       render()
     </script>
-
-
 </body>
 </html>

@@ -2,6 +2,8 @@
 
 A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](https://github.com/webrtcHacks/adapter). This is a simple video conferencing app with WebRTC that has clean management of connection state and an easy UX to video chat with other people by sharing a websocket link.
 
+Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
+
 ## Preparation
 - Prepare: Review [Jitsi code](https://github.com/jitsi/jitsi-meet/tree/master/react)
 - Wireframes: [here](https://docs.geeky.rocks/shared/X1witnE9_cfgg-3uia9VVm0D1_lwjvGmdpT62SPpDSE)
@@ -12,7 +14,8 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 - [x] Install [react-redux](https://react-redux.js.org/introduction/quick-start)
 - [x] Add a con/disconnect button that toggles and updates redux state
 - [x] Install [AdapterJS](https://github.com/webrtcHacks/adapter)
-- [ ] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
+- [x] Enable Github pages
+- [x] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
 - [ ] Create a connection using hardcoded details
 - [ ] Allow user to input connection details
 - [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
@@ -28,3 +31,4 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 ## Resources
 https://www.robinwieruch.de/react-redux-tutorial
 https://webrtc.org/start/
+https://webrtc.github.io/samples/
