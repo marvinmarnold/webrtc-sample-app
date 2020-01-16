@@ -16,7 +16,7 @@ Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
 - [x] Install [AdapterJS](https://github.com/webrtcHacks/adapter)
 - [x] Enable Github pages
 - [x] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
-- [ ] Create a connection using hardcoded details
+- [ ] Create a connection using hardcoded details using [RTCIceCandidate](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/RTCIceCandidate)
 - [ ] Allow user to input connection details
 - [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
 - [ ] Add audio
