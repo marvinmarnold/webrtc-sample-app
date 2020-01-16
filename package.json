@@ -1,0 +1,43 @@
+{
+  "name": "webrtc-sample-app",
+  "version": "1.0.0",
+  "description": "A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](https://github.com/webrtcHacks/adapter). This is a simple video conferencing app with WebRTC that has clean management of connection state and an easy UX to video chat with other people by sharing a websocket link.",
+  "main": "main.js",
+  "scripts": {
+    "start": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marvinmarnold/webrtc-sample-app.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/marvinmarnold/webrtc-sample-app/issues"
+  },
+  "homepage": "https://github.com/marvinmarnold/webrtc-sample-app#readme",
+  "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "html-loader": "^0.5.5",
+    "html-webpack-plugin": "^3.2.0",
+    "redux-devtools": "^3.5.0",
+    "webpack": "^4.41.5",
+    "webpack-cli": "^3.3.10",
+    "webpack-dev-server": "^3.10.1"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-react-app": "^3.1.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "reactstrap": "^8.3.2",
+    "redux": "^4.0.5"
+  }
+}
