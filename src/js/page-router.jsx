@@ -10,8 +10,6 @@ class PageRouter extends Component {
   }
 
   render() {
-    console.log("router")
-    console.log(this.props)
     if (this.props.isMediaAvailable) {
       return <ChatPage />
     } else {
