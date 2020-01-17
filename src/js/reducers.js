@@ -13,9 +13,7 @@ function applyConnectionInit(state, action) {
 }
 
 function applyAudioEnabled(state, action) {
-  console.log("applyAudioEnabled")
   const newState = Object.assign({}, state, {isAudioAvail: true})
-  console.log(newState)
   return newState
 }
 
