@@ -4,15 +4,17 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
 import { rootReducer } from "./reducers"
+import { loadStreams } from "./webrtc-manager"
 
 import Page from "./page.jsx"
 
-const initialState = {isConnected: false, controls: {isVideoOn: true, isAudioOn: false}}
+const initialState = {isConnected: false, controls: {isVideoOn: true, isAudioOn: false}, availableMedia: {video: false, audio: false}}
 const store = createStore(rootReducer, initialState)
 
 class Layout extends Component {
   constructor() {
     super();
+    loadStreams()
   }
   render() {
     return (
