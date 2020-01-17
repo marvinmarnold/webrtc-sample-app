@@ -1,3 +1,6 @@
+import store from "./store"
+import { actionAudioEnabled } from "./vars"
+
 const config = {sdpSemantics: "unified-plan"} // alternatively, plan-b
 
 const offerOptions = {
@@ -5,16 +8,30 @@ const offerOptions = {
   offerToReceiveVideo: 1
 };
 
-let localStream
+let localAudioStream
 
-const loadStreams = async () => {
+// const loadVideoStream = async () => {
+//     try {
+//     const stream = await navigator.mediaDevices.getUserMedia({audio: true, video: true});
+//     console.log('Received local stream');
+//     localVideo.srcObject = stream;
+//     localStream = stream;
+//   } catch (e) {
+//     alert("N");
+//   }
+
+//   let localConnection = new RTCPeerConnection(config);
+//   console.log(localConnection.connectionState)
+// }
+
+const loadAudioStream = async () => {
     try {
-    const stream = await navigator.mediaDevices.getUserMedia({audio: true, video: true});
-    console.log('Received local stream');
-    localVideo.srcObject = stream;
-    localStream = stream;
+    const stream = await navigator.mediaDevices.getUserMedia({audio: true});
+    console.log('Received local audio stream');
+    localAudioStream = stream;
+    store.dispatch({type: actionAudioEnabled})
   } catch (e) {
-    alert(`getUserMedia() error: ${e.name}`);
+    alert("Unable to access microphone. Check the connection and reload the page.");
   }
 
   let localConnection = new RTCPeerConnection(config);
@@ -29,4 +46,4 @@ const loadStreams = async () => {
 // get audio and video streams
 // create offer
 
-export { loadStreams }
+export { loadAudioStream }

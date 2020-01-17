@@ -1,4 +1,6 @@
-import { actionConnectionToggle, actionConnectionInit } from "./vars"
+import { 
+  actionConnectionToggle, actionConnectionInit, actionAudioEnabled 
+} from "./vars"
 
 function applyToggleConnection(state, action) {
   const newState = Object.assign({}, state, {isConnected: !state.isConnected})
@@ -10,12 +12,21 @@ function applyConnectionInit(state, action) {
   return newState
 }
 
+function applyAudioEnabled(state, action) {
+  console.log("applyAudioEnabled")
+  const newState = Object.assign({}, state, {isAudioAvail: true})
+  console.log(newState)
+  return newState
+}
+
 const rootReducer = (state, action) => {
   switch(action.type) {
       case actionConnectionToggle: {
         return applyToggleConnection(state, action)
       } case actionConnectionInit: {
         return applyConnectionInit(state, action)
+      } case actionAudioEnabled: {
+        return applyAudioEnabled(state, action)
       }
       default : return state;
    }

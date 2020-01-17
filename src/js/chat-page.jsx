@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 
 import { actionConnectionToggle } from "./vars"
 
-class Page extends Component {
+class ChatPage extends Component {
   constructor() {
     super();
 
@@ -31,4 +31,4 @@ const mapDispatchToProps = dispatch => {
 }
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(Page)
+export default connect(mapStateToProps, mapDispatchToProps)(ChatPage)

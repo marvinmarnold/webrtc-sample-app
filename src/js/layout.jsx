@@ -1,30 +1,29 @@
 import React, { Component } from "react"
 import ReactDOM from "react-dom"
-import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 
-import { rootReducer } from "./reducers"
-import { loadStreams } from "./webrtc-manager"
+import { loadAudioStream } from "./webrtc-manager"
+import store from './store'
 
-import Page from "./page.jsx"
-
-const initialState = {isConnected: false, controls: {isVideoOn: true, isAudioOn: false}, availableMedia: {video: false, audio: false}}
-const store = createStore(rootReducer, initialState)
+import PageRouter from "./page-router.jsx"
 
 class Layout extends Component {
   constructor() {
     super();
-    loadStreams()
+    loadAudioStream()
   }
+
   render() {
     return (
       <Provider store={store}>
-        <Page />
+        <PageRouter />
       </Provider>
     );
   }
 }
-export default Layout;
+
+export default Layout
 
 const wrapper = document.getElementById("chat_window_container");
 wrapper ? ReactDOM.render(<Layout />, wrapper) : false;
+
