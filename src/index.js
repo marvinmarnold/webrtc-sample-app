@@ -1,1 +1,1 @@
-import Layout from "./js/layout.jsx";
+import Layout from "./js/components/layout.jsx";

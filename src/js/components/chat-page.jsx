@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { actionConnectionToggle } from "./vars"
+import { actionConnectionToggle } from "../lib/vars"
 
 const videoAreaStyle = {
   backgroundColor: 'blue',
@@ -46,10 +46,10 @@ class ChatPage extends Component {
     return (
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
-          <Label for="exampleEmail" className="mr-sm-2">Email</Label>
-          <Input type="email" name="email" id="exampleEmail" placeholder="something@idk.cool" />
+          <Label for="wsAddress" className="mr-sm-2">WS address</Label>
+          <Input type="text" name="wsAddress" id="wsAddress" placeholder="ws://ADDRESS_HERE" />
         </FormGroup>
-        <Button>Submit</Button>
+        <Button>Call</Button>
       </Form>
     )
   }
@@ -58,13 +58,11 @@ class ChatPage extends Component {
     return (
       <div className="row">
         <div className="col">
-          <button class="btn"><i data-feather="volume-x"></i></button>
-        </div>
-        <div className="col">
-          <button class="btn"><i data-feather="video-off"></i></button>
-        </div>
-        <div className="col">
           {this.renderConnectionControls()}
+        </div>
+        <div className="col">
+          <button class="btn"><i data-feather="volume-x"></i></button>
+          <button class="btn"><i data-feather="video-off"></i></button>
         </div>
       </div>
     )

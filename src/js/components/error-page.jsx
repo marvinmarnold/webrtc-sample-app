@@ -22,7 +22,7 @@ class ErrorPage extends Component {
 
 const mapStateToProps = state => {
   console.log(state)
-  return {isAudioAvail: state.isAudioAvail, isVideoAvail: state.isVideoAvail}
+  return { isAudioAvail: state.isAudioAvail, isVideoAvail: state.isVideoAvail }
 }
 
 export default connect(mapStateToProps)(ErrorPage)
