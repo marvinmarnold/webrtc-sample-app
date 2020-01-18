@@ -2,18 +2,27 @@ import {
   actionAudioEnabled, actionStartCall 
 } from "./vars"
 
+import {
+  mediaAcquiredState, wsCreatedState
+} from "./state-names"
+
 import { call } from "./webrtc-manager"
 import { connectToWebsocket } from "./websocket"
+const wsUrl = "ws://localhost:7766"
+
+/*
+  Connect to signaling server over websocket then start the call
+*/
+
 
 function applyStartCall(state, action) {
-  connectToWebsocket()
-  call()
-  const newState = Object.assign({}, state, {isAudioOn: true})
+  connectToWebsocket(wsUrl)
+  const newState = Object.assign({}, state, {state: wsCreatedState, isAudioAvail: true})
   return newState
 }
 
 function applyAudioEnabled(state, action) {
-  const newState = Object.assign({}, state, {isAudioAvail: true})
+  const newState = Object.assign({}, state, {state: mediaAcquiredState, isAudioAvail: true})
   return newState
 }
 

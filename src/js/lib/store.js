@@ -2,7 +2,9 @@ import { createStore } from 'redux'
 
 import { rootReducer } from "./reducers"
 
-const initialState = {isConnected: false, isVideoOn: true, isAudioOn: false, isVideoAvail: false, isAudioAvail: false}
+import { initialState as initialStateName } from "./state-names"
+
+const initialState = {state:  initialStateName, isVideoAvail: false, isAudioAvail: false}
 
 const store = createStore(rootReducer, initialState)
 
