@@ -17,10 +17,11 @@ Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
 - [x] Enable Github pages
 - [x] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
 - [x] Migrate to webpack
-- [ ] Create a connection using hardcoded details using [RTCIceCandidate](https://developer.mozilla.org/en-US/docs/Web/API/RTCIceCandidate/RTCIceCandidate)
+- [ ] Create a websocket signaling server locally
+- [ ] Create an offer and send over hardcoded websocket to establish p2p connection
 - [ ] Allow user to input connection details
 - [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
-- [ ] Add audio
+- [ ] Deploy signaling server somewhere
 
 ## Wishlist
 - Mute/toggle video support
