@@ -3,8 +3,10 @@ import {
 } from "./vars"
 
 import { call } from "./webrtc-manager"
+import { connectToWebsocket } from "./websocket"
 
 function applyStartCall(state, action) {
+  connectToWebsocket()
   call()
   const newState = Object.assign({}, state, {isAudioOn: true})
   return newState

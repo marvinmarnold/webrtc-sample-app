@@ -1,7 +1,7 @@
 import store from "./store"
 import { actionAudioEnabled } from "./vars"
 
-const config = {sdpSemantics: "unified-plan"} // alternatively, plan-b
+const config = { sdpSemantics: "unified-plan" } // alternatively, plan-b
 
 const offerOptions = {
   offerToReceiveAudio: 1,

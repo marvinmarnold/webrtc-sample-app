@@ -4,6 +4,8 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 
 Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
 
+Depends on a websocket based [signaling server](https://github.com/marvinmarnold/webrtc-signaling-server).
+
 ## Preparation
 - Prepare: Review [Jitsi code](https://github.com/jitsi/jitsi-meet/tree/master/react)
 - Wireframes: [here](https://docs.geeky.rocks/shared/X1witnE9_cfgg-3uia9VVm0D1_lwjvGmdpT62SPpDSE)
