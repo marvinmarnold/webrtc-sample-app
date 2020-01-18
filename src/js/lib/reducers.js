@@ -1,14 +1,12 @@
 import { 
-  actionConnectionToggle, actionConnectionInit, actionAudioEnabled 
+  actionAudioEnabled, actionStartCall 
 } from "./vars"
 
-function applyToggleConnection(state, action) {
-  const newState = Object.assign({}, state, {isConnected: !state.isConnected})
-  return newState
-}
+import { call } from "./webrtc-manager"
 
-function applyConnectionInit(state, action) {
-  const newState = Object.assign({}, state, {isConnected: false})
+function applyStartCall(state, action) {
+  call()
+  const newState = Object.assign({}, state, {isAudioOn: true})
   return newState
 }
 
@@ -19,10 +17,8 @@ function applyAudioEnabled(state, action) {
 
 const rootReducer = (state, action) => {
   switch(action.type) {
-      case actionConnectionToggle: {
-        return applyToggleConnection(state, action)
-      } case actionConnectionInit: {
-        return applyConnectionInit(state, action)
+      case actionStartCall: {
+        return applyStartCall(state, action)
       } case actionAudioEnabled: {
         return applyAudioEnabled(state, action)
       }

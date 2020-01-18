@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { actionConnectionToggle } from "../lib/vars"
+import { actionStartCall } from "../lib/vars"
 
 const videoAreaStyle = {
   backgroundColor: 'blue',
@@ -21,9 +21,6 @@ class ChatPage extends Component {
   }
 
   renderChat() {
-    // const status = this.props.isConnected ? "Connected" : "Disconnected"
-    // return <Button onClick={this.props.toggle}>Status: {status}</Button>
-
     return (
         <div className="row">
           <div className="col">
@@ -49,7 +46,7 @@ class ChatPage extends Component {
           <Label for="wsAddress" className="mr-sm-2">WS address</Label>
           <Input type="text" name="wsAddress" id="wsAddress" placeholder="ws://ADDRESS_HERE" />
         </FormGroup>
-        <Button>Call</Button>
+        <Button onClick={this.props.call}>Call</Button>
       </Form>
     )
   }
@@ -61,8 +58,8 @@ class ChatPage extends Component {
           {this.renderConnectionControls()}
         </div>
         <div className="col">
-          <button class="btn"><i data-feather="volume-x"></i></button>
-          <button class="btn"><i data-feather="video-off"></i></button>
+          <button className="btn"><i data-feather="volume-x"></i></button>
+          <button className="btn"><i data-feather="video-off"></i></button>
         </div>
       </div>
     )
@@ -84,7 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    toggle: () => dispatch({ type: actionConnectionToggle}),
+    call: () => dispatch({ type: actionStartCall}),
   }
 }
 

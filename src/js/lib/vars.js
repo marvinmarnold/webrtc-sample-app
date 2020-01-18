@@ -1,9 +1,8 @@
 const actionAudioEnabled = 'AUDIO_ENABLED'
 
-const actionConnectionToggle = 'CONNECTION_TOGGLE'
-const actionConnectionInit = 'CONNECTION_INITIALIZED'
+const actionStartCall = 'START_CALL'
 
 export { 
-  actionConnectionToggle, actionConnectionInit, 
+  actionStartCall,
   actionAudioEnabled 
 }

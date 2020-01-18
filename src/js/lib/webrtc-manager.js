@@ -8,7 +8,7 @@ const offerOptions = {
   offerToReceiveVideo: 1
 };
 
-let localStream, startTime
+let localStream, startTime, localConnection
 
 const loadAudioAndVideoStream = async () => {
     try {
@@ -44,11 +44,11 @@ const call = async () => {
   }
 
   console.log('RTCPeerConnection configuration:', config);
-  let localConnection = new RTCPeerConnection(config);
+  localConnection = new RTCPeerConnection(config);
   console.log(localConnection.connectionState)
 
   console.log('Adding audio and video streams to the RTCPeerConnection');
-  localStream.getTracks().forEach(track => pc1.addTrack(track, localStream));
+  localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
 
   try {
     console.log('creating offer');
@@ -61,10 +61,10 @@ const call = async () => {
 
 const onCreateOfferSuccess = async (desc) => {
   console.log(`Offer from pc1\n${desc.sdp}`);
-  console.log('pc1 setLocalDescription start');
+  console.log('localConnection setLocalDescription start');
   try {
-    await pc1.setLocalDescription(desc);
-    onSetLocalSuccess(pc1);
+    await localConnection.setLocalDescription(desc);
+    onSetLocalSuccess(localConnection);
   } catch (e) {
     onSetSessionDescriptionError();
   }
@@ -72,6 +72,10 @@ const onCreateOfferSuccess = async (desc) => {
 
 function onCreateSessionDescriptionError(error) {
   console.log(`Failed to create session description: ${error.toString()}`);
+}
+
+function onSetSessionDescriptionError(error) {
+  console.log(`Failed to set session description: ${error.toString()}`);
 }
 
 function onSetLocalSuccess(pc) {
@@ -85,4 +89,4 @@ function onSetLocalSuccess(pc) {
 // get audio and video streams
 // create offer
 
-export { loadAudioStream, loadAudioAndVideoStream }
+export { loadAudioStream, loadAudioAndVideoStream, call }
