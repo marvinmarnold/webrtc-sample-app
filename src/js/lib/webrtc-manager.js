@@ -1,5 +1,5 @@
 import store from "./store"
-import { actionAudioEnabled } from "./vars"
+import { actionAudioEnabled } from "./action-names"
 
 const config = { sdpSemantics: "unified-plan" } // alternatively, plan-b
 

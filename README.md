@@ -8,7 +8,7 @@ Depends on a websocket based [signaling server](https://github.com/marvinmarnold
 
 ## Preparation
 - Prepare: Review [Jitsi code](https://github.com/jitsi/jitsi-meet/tree/master/react)
-- Wireframes: [here](https://docs.geeky.rocks/shared/X1witnE9_cfgg-3uia9VVm0D1_lwjvGmdpT62SPpDSE)
+- Wireframes & state machine: [here](https://docs.geeky.rocks/shared/X1witnE9_cfgg-3uia9VVm0D1_lwjvGmdpT62SPpDSE)
 - State definition: {isConnected, controls: {isVideoOn, isAudioOn}}
 
 ## Plan

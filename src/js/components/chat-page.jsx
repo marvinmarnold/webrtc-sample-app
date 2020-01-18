@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
-import { actionStartCall } from "../lib/vars"
+import { actionStartCall } from "../lib/action-names"
 
 const videoAreaStyle = {
   backgroundColor: 'blue',
