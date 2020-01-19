@@ -46,7 +46,7 @@ class ChatPage extends Component {
           <Label for="wsAddress" className="mr-sm-2">WS address</Label>
           <Input type="text" name="wsAddress" id="wsAddress" placeholder="ws://ADDRESS_HERE" />
         </FormGroup>
-        <Button onClick={this.props.call}>Call</Button>
+        <Button onClick={this.props.call} id="callButton">Call</Button>
       </Form>
     )
   }

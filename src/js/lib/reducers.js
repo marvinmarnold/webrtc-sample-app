@@ -1,5 +1,5 @@
 import { 
-  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed
+  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers
 } from "./action-names"
 
 import {
@@ -8,9 +8,14 @@ import {
 
 import { call } from "./webrtc-manager"
 import { connectToWebsocket } from "./websocket"
+
 const wsUrl = "ws://localhost:7766"
 
+
 function applyStartCall(state, action) {
+  const callButton = document.getElementById('callButton');
+  callButton.disabled = true;
+
   // Connect to signaling server over websocket 
   connectToWebsocket(wsUrl)
   const newState = Object.assign({}, state, {state: wsCreatedState})
@@ -28,7 +33,14 @@ function applyWsConnected(state, action) {
 }
 
 function applyWsFailed(state, action) {
-  const newState = Object.assign({}, state, {state: mediaAcquiredState})
+  const callButton = document.getElementById('callButton');
+  callButton.disabled = false;
+  const newState = Object.assign({}, state, {state: mediaAcquiredState, knownPeers: -1, syncedPeers: -1})
+  return newState
+}
+
+function applyLearnNumPeers(state, action) {
+  const newState = Object.assign({}, state, {state: mediaAcquiredState, knownPeers: action.num, syncedPeers: -1})
   return newState
 }
 
@@ -44,6 +56,8 @@ const rootReducer = (state, action) => {
       return applyWsConnected(state, action)
     } case actionWsFailed: {
       return applyWsFailed(state, action)
+    } case actionLearnNumPeers: {
+      return applyLearnNumPeers(state, action)
     }
     default : return state;
    }
