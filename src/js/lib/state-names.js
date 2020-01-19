@@ -6,8 +6,11 @@ const mediaUnavailableState = "MEDIA_UNAVAILABLE_STATE"
 const wsCreatedState = "WS_CREATED_STATE"
 const wsConnectedState = "WS_CONNECTED_STATE"
 
+const knowsPeersState = "KNOWS_PEERS_STATE"
+
 export { 
   initialState, 
   mediaAcquiredState, mediaUnavailableState,
-  wsCreatedState, wsConnectedState
+  wsCreatedState, wsConnectedState,
+  knowsPeersState
 }

@@ -3,10 +3,9 @@ import {
 } from "./action-names"
 
 import {
-  mediaAcquiredState, wsCreatedState, wsConnectedState
+  mediaAcquiredState, wsCreatedState, wsConnectedState, knowsPeersState
 } from "./state-names"
 
-import { call } from "./webrtc-manager"
 import { connectToWebsocket } from "./websocket"
 
 const wsUrl = "ws://localhost:7766"
@@ -17,7 +16,7 @@ function applyStartCall(state, action) {
   callButton.disabled = true;
 
   // Connect to signaling server over websocket 
-  connectToWebsocket(wsUrl)
+  connectToWebsocket(wsUrl) // TODO ensure this is not blocking
   const newState = Object.assign({}, state, {state: wsCreatedState})
   return newState
 }
@@ -40,7 +39,8 @@ function applyWsFailed(state, action) {
 }
 
 function applyLearnNumPeers(state, action) {
-  const newState = Object.assign({}, state, {state: mediaAcquiredState, knownPeers: action.num, syncedPeers: -1})
+  const newState = Object.assign({}, state, {state: knowsPeersState, knownPeers: action.numPeers, syncedPeers: -1})
+  console.log(newState)
   return newState
 }
 
