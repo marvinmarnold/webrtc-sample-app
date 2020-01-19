@@ -19,11 +19,11 @@ Depends on a websocket based [signaling server](https://github.com/marvinmarnold
 - [x] Enable Github pages
 - [x] Access [RTCPeerConnection](https://developer.mozilla.org/en-US/docs/Web/API/RTCPeerConnection) state and display on screen
 - [x] Migrate to webpack
-- [ ] Create a websocket signaling server locally
-- [ ] Create an offer and send over hardcoded websocket to establish p2p connection
-- [ ] Allow user to input connection details
-- [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
+- [x] Create a websocket signaling server locally
+- [x] Create an offer and send over hardcoded websocket to establish p2p connection
 - [ ] Deploy signaling server somewhere
+- [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
+- [ ] Allow user to input connection details
 
 ## Wishlist
 - Mute/toggle video support

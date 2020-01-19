@@ -1,5 +1,6 @@
 import store from "./store"
-import { actionAudioEnabled } from "./action-names"
+import { actionAudioEnabled, actionConnectedToPeers } from "./action-names"
+import { sendMsg } from "./websocket"
 
 const config = { sdpSemantics: "unified-plan" } // alternatively, plan-b
 
@@ -8,7 +9,7 @@ const offerOptions = {
   offerToReceiveVideo: 1
 };
 
-let localStream, startTime, localConnection
+let localStream, startTime, localConnection, answer
 
 const loadAudioAndVideoStream = async () => {
     try {
@@ -33,6 +34,18 @@ const loadAudioStream = async () => {
   }
 }
 
+const onIceCandidate = candidate => {
+  // Firing this callback with a null candidate indicates that
+  // trickle ICE gathering has finished, and all the candidates
+  // are now present in pc.localDescription.  Waiting until now
+  // to create the answer saves us from having to send offer +
+  // answer + iceCandidates separately.
+  if (candidate.candidate == null) {
+    console.log("Finished creating offer")
+    sendMsg("O:" + JSON.stringify(localConnection.localDescription))
+  }
+}
+
 const call = async () => {
   console.log('Starting call');
 
@@ -45,10 +58,14 @@ const call = async () => {
 
   console.log('RTCPeerConnection configuration:', config);
   localConnection = new RTCPeerConnection(config);
+  // makeDataChannel()
   console.log(localConnection.connectionState)
+  localConnection.onicecandidate = onIceCandidate
 
   console.log('Adding audio and video streams to the RTCPeerConnection');
   localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
+
+  localConnection.ontrack = gotRemoteStream
 
   try {
     console.log('creating offer');
@@ -59,12 +76,72 @@ const call = async () => {
   }
 }
 
+function doHandleError(error) {
+  throw error;
+}
+
+async function doCreateAnswer() {
+  try {
+    console.log("About to create an answer")
+    answer = await localConnection.createAnswer();
+    await localConnection.setLocalDescription(answer);
+  } catch (e) {
+    doHandleError(e);
+  }
+}
+
+const acceptAnswer = ans => {
+  const data = JSON.parse(ans)
+  const desc = new RTCSessionDescription(data)
+  localConnection.setRemoteDescription(desc)
+}
+
+const acceptOffer = async offer => {
+  const data = JSON.parse(offer)
+  console.log("Accepting offer " + data)
+  const desc = new RTCSessionDescription(data)
+  localConnection = new RTCPeerConnection(config)
+
+  localConnection.onicecandidate = function(candidate) {
+    // Firing this callback with a null candidate indicates that
+    // trickle ICE gathering has finished, and all the candidates
+    // are now present in pc.localDescription.  Waiting until now
+    // to create the answer saves us from having to send offer +
+    // answer + iceCandidates separately.
+    if (candidate.candidate == null) {
+      console.log("Finished creating answer")
+      sendMsg("A:" + JSON.stringify(answer))
+    }
+  }
+
+  const audioTracks = localStream.getAudioTracks();
+
+  if (audioTracks.length > 0) {
+    console.log(`Using audio device: ${audioTracks[0].label}`);
+  }
+
+  console.log('Adding audio and video streams to the RTCPeerConnection');
+  localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
+
+  localConnection.ontrack = gotRemoteStream
+
+  try {
+    console.log("About to set local description")
+    await localConnection.setRemoteDescription(desc);
+    doCreateAnswer();
+  } catch (e) {
+    doHandleError(e);
+  }
+}
+
 const onCreateOfferSuccess = async (desc) => {
-  console.log(`Offer from pc1\n${desc.sdp}`);
+  console.log(`Offer on local machine`);
+  // console.log(desc.sdp);
+
   console.log('localConnection setLocalDescription start');
   try {
     await localConnection.setLocalDescription(desc);
-    onSetLocalSuccess(localConnection);
+    onSetLocalSuccess();
   } catch (e) {
     onSetSessionDescriptionError();
   }
@@ -78,8 +155,16 @@ function onSetSessionDescriptionError(error) {
   console.log(`Failed to set session description: ${error.toString()}`);
 }
 
-function onSetLocalSuccess(pc) {
-  console.log(`${getName(pc)} setLocalDescription complete`);
+function onSetLocalSuccess() {
+  console.log(`Local setLocalDescription complete`);
+}
+
+function gotRemoteStream(e) {
+  store.dispatch({type: actionConnectedToPeers})
+  // if (remoteVideo.srcObject !== e.streams[0]) {
+  //   remoteVideo.srcObject = e.streams[0];
+  //   console.log('pc2 received remote stream');
+  // }
 }
 
 // add a RTCIceCandidate with addIceCandidate()
@@ -89,4 +174,4 @@ function onSetLocalSuccess(pc) {
 // get audio and video streams
 // create offer
 
-export { loadAudioStream, loadAudioAndVideoStream, call }
+export { loadAudioStream, loadAudioAndVideoStream, call, acceptOffer, acceptAnswer }

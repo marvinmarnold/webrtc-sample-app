@@ -1,9 +1,9 @@
 import { 
-  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers
+  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers, actionConnectedToPeers
 } from "./action-names"
 
 import {
-  mediaAcquiredState, wsCreatedState, wsConnectedState, knowsPeersState
+  mediaAcquiredState, wsCreatedState, wsConnectedState, knowsPeersState, connectedToPeersState
 } from "./state-names"
 
 import { connectToWebsocket } from "./websocket"
@@ -34,13 +34,17 @@ function applyWsConnected(state, action) {
 function applyWsFailed(state, action) {
   const callButton = document.getElementById('callButton');
   callButton.disabled = false;
-  const newState = Object.assign({}, state, {state: mediaAcquiredState, knownPeers: -1, syncedPeers: -1})
+  const newState = Object.assign({}, state, {state: mediaAcquiredState, knownPeers: -1})
   return newState
 }
 
 function applyLearnNumPeers(state, action) {
-  const newState = Object.assign({}, state, {state: knowsPeersState, knownPeers: action.numPeers, syncedPeers: -1})
-  console.log(newState)
+  const newState = Object.assign({}, state, {state: knowsPeersState, knownPeers: action.numPeers})
+  return newState
+}
+
+function applyConnectedToPeers(state, action) {
+  const newState = Object.assign({}, state, {state: connectedToPeersState})
   return newState
 }
 
@@ -50,15 +54,23 @@ const rootReducer = (state, action) => {
   switch(action.type) {
     case actionStartCall: {
       return applyStartCall(state, action)
+
     } case actionAudioEnabled: {
       return applyAudioEnabled(state, action)
+
     } case actionWsConnected: {
       return applyWsConnected(state, action)
+
     } case actionWsFailed: {
       return applyWsFailed(state, action)
+
     } case actionLearnNumPeers: {
       return applyLearnNumPeers(state, action)
+
+    } case actionConnectedToPeers: {
+      return applyConnectedToPeers(state, action)
     }
+
     default : return state;
    }
 }

@@ -1,9 +1,21 @@
 import store from "./store"
 import { actionWsConnected, actionWsFailed, actionLearnNumPeers } from "./action-names"
 
-import { call } from "./webrtc-manager"
+import { call, acceptOffer, acceptAnswer } from "./webrtc-manager"
 
 let ws
+
+const handleNumPeers = (dat) => {
+  const numPeers = parseInt(dat)
+  store.dispatch({type: actionLearnNumPeers, numPeers})
+
+  if (numPeers > 1) {
+    console.log("More than one peer is connected. Going to start call.")
+    call()
+  } else {
+    console.log("Only one peer is connected. Cannot start call. Waiting for more peers to connect.")
+  }
+}
 
 const connectToWebsocket = (wsUri, onSuccess, onError) => {
   ws = new WebSocket(wsUri)
@@ -22,15 +34,25 @@ const connectToWebsocket = (wsUri, onSuccess, onError) => {
   }
 
   ws.onmessage = evt => {
-    console.log("from server: " + evt.data)
-    const numPeers = parseInt(evt.data)
-    store.dispatch({type: actionLearnNumPeers, numPeers})
+    console.log("Got message over websocket")
+    // console.log("from server: " + evt.data)
+    const msgType = evt.data.charAt(0)
+    const msg = evt.data.substring(2)
 
-    if (numPeers > 1) {
-      console.log("More than one peer is connected. Going to start call.")
-      call()
+    if (msgType === 'N') {
+      console.log("Got a message about number of peers")
+      // num peers msg
+      handleNumPeers(msg)
+    } else if (msgType === 'O') {
+      // offer msg
+      console.log("Got an offer message")
+      acceptOffer(msg)
+    } else if (msgType === 'A') {
+      // answer msg
+      console.log("Got an answer message")
+      acceptAnswer(msg)
     } else {
-      console.log("Only one peer is connected. Cannot start call. Waiting for more peers to connect.")
+      console.log("Unknown message type " + msgType)
     }
   }
 
@@ -40,5 +62,9 @@ const connectToWebsocket = (wsUri, onSuccess, onError) => {
   }
 }
 
+const sendMsg = msg => {
+  console.log("Sending message to ws server")
+  ws.send(msg)
+}
 
-export { connectToWebsocket }
+export { connectToWebsocket, sendMsg }
