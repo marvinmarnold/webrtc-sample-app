@@ -8,8 +8,9 @@ import {
 
 import { connectToWebsocket } from "./websocket"
 
+const wsUrl = "ws://10.20.20.4:7766"
 const wsUrl = "ws://localhost:7766"
-
+// const wsUrl = "ws://37.218.241.36:7766"
 
 function applyStartCall(state, action) {
   const callButton = document.getElementById('callButton');
