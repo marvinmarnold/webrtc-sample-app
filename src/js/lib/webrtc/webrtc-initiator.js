@@ -1,7 +1,12 @@
 import store from "../store"
 import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "../action-names"
 import { sendMsg } from "../websocket"
-import { logLocalStreamInfo, handleRemoteStream } from './webrtc-shared'
+import { logLocalStreamInfo, handleRemoteStream, localStream, config } from './webrtc-shared'
+
+const offerOptions = {
+  offerToReceiveAudio: 1,
+  offerToReceiveVideo: 1
+};
 
 /*
   Send initial offer

@@ -18,10 +18,6 @@ const config = {
     ] 
   } 
 
-const offerOptions = {
-  offerToReceiveAudio: 1,
-  offerToReceiveVideo: 1
-};
 
 let localStream
 
@@ -62,4 +58,4 @@ function handleRemoteStream(e) {
 }
 
 
-export { loadAudioAndVideoStream, logLocalStreamInfo, handleRemoteStream, localStream }
+export { loadAudioAndVideoStream, logLocalStreamInfo, handleRemoteStream, localStream, config }

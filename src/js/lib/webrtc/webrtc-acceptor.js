@@ -1,7 +1,7 @@
 import store from "../store"
 import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "../action-names"
 import { sendMsg } from "../websocket"
-import { logLocalStreamInfo, handleRemoteStream } from './webrtc-shared'
+import { logLocalStreamInfo, handleRemoteStream, localStream, config } from './webrtc-shared'
 
 /*
   Accept offer initiated by counter party
