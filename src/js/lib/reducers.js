@@ -1,9 +1,9 @@
 import { 
-  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers, actionConnectedToPeers, actionAudioVideoEnabled
+  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers, actionConnectedToPeers, actionAudioVideoEnabled, actionMediaUnavailable
 } from "./action-names"
 
 import {
-  mediaAcquiredState, wsCreatedState, wsConnectedState, knowsPeersState, connectedToPeersState
+  mediaAcquiredState, wsCreatedState, wsConnectedState, knowsPeersState, connectedToPeersState, mediaUnavailableState
 } from "./state-names"
 
 import { connectToWebsocket } from "./websocket"
@@ -53,11 +53,19 @@ function applyConnectedToPeers(state, action) {
   return newState
 }
 
+function applyMediaUnavailable(state, action) {
+  const newState = Object.assign({}, state, {state: mediaUnavailableState})
+  return newState
+}
+
 const rootReducer = (state, action) => {
   console.log("Processing action: " + JSON.stringify(action))
 
   switch(action.type) {
-    case actionStartCall: {
+    case actionMediaUnavailable: {
+      return applyMediaUnavailable(state, action)
+
+    } case actionStartCall: {
       return applyStartCall(state, action)
 
     } case actionAudioEnabled: {

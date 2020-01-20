@@ -1,5 +1,5 @@
 import store from "../store"
-import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "../action-names"
+import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers, actionMediaUnavailable } from "../action-names"
 import { sendMsg } from "../websocket"
 
 const config = { 
@@ -30,8 +30,10 @@ const loadAudioAndVideoStream = async () => {
     localStream = stream;
     store.dispatch({type: actionAudioVideoEnabled})
   } catch (e) {
+    store.dispatch({type: actionMediaUnavailable})
     console.error(e)
     alert("Unable to access video. Check the connection and reload the page.");
+
   }
 }
 

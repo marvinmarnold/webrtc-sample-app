@@ -1,5 +1,5 @@
 import store from "../store"
-import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "../action-names"
+import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers, actionMediaUnavailable } from "../action-names"
 import { sendMsg } from "../websocket"
 import { logLocalStreamInfo, handleRemoteStream, localStream, config } from './webrtc-shared'
 
