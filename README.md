@@ -4,7 +4,25 @@ A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](http
 
 Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
 
-Depends on a websocket based [signaling server](https://github.com/marvinmarnold/webrtc-signaling-server).
+Depends on a websocket based [signaling server](https://github.com/marvinmarnold/webrtc-signaling-server). 
+This is currently deployed to ws://37.218.241.36:7766 so no need to deploy your own.
+
+**Note:** Currently does not have valid TUN server configured. Will only reliably work if both clients on same network
+
+## Usage
+Open `dist/index.html` with Firefox or Chrome. Or view locally.
+
+```
+npm install
+npm start
+```
+
+## Building
+
+```
+npm install --save-dev webpack
+npx webpack --mode production
+```
 
 ## Preparation
 - Prepare: Review [Jitsi code](https://github.com/jitsi/jitsi-meet/tree/master/react)
@@ -23,7 +41,7 @@ Depends on a websocket based [signaling server](https://github.com/marvinmarnold
 - [x] Create an offer and send over hardcoded websocket to establish p2p connection
 - [x] Deploy signaling server somewhere
 - [x] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
-- [ ] Allow user to input connection details
+- [x] Allow user to input connection details
 
 ## Wishlist
 - Mute/toggle video support

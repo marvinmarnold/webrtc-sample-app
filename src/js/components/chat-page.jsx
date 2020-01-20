@@ -25,7 +25,6 @@ class ChatPage extends Component {
           <div className="col">
             <h2>You</h2>
             <video id="youvid" playsInline autoPlay></video>
-
           </div>
         </div>
       )
@@ -36,7 +35,7 @@ class ChatPage extends Component {
       <Form inline>
         <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
           <Label for="wsAddress" className="mr-sm-2">WS address</Label>
-          <Input type="text" name="wsAddress" id="wsAddress" placeholder="ws://ADDRESS_HERE" />
+          <Input type="text" name="wsAddress" id="wsAddress" placeholder="ws://37.218.241.36:7766" defaultValue="ws://37.218.241.36:7766" />
         </FormGroup>
         <Button onClick={this.props.call} id="callButton">Call</Button>
       </Form>
