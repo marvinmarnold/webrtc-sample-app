@@ -2,7 +2,8 @@
 
 A Redux-React based demo of [WebRTC](https://webrtc.org), using [AdapterJS](https://github.com/webrtcHacks/adapter). This is a simple video conferencing app with WebRTC that has clean management of connection state and an easy UX to video chat with other people by sharing a websocket link.
 
-Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/).
+Live page [here](https://marvinmarnold.github.io/webrtc-sample-app/). 
+It won't actually be able to establish a connection to the websocket because HTTPS is being enforced and the websocket does not yet support SSL.
 
 Depends on a websocket based [signaling server](https://github.com/marvinmarnold/webrtc-signaling-server). 
 This is currently deployed to ws://37.218.241.36:7766 so no need to deploy your own.
