@@ -1,4 +1,5 @@
 const actionAudioEnabled = 'AUDIO_ENABLED'
+const actionAudioVideoEnabled = 'AUDIO_VIDEO_ENABLED'
 const actionWsConnected = 'WS_CONNECTED'
 const actionWsFailed = 'WS_FAILED'
 
@@ -9,7 +10,7 @@ const actionStartCall = 'START_CALL'
 
 export { 
   actionStartCall,
-  actionAudioEnabled,
+  actionAudioEnabled, actionAudioVideoEnabled,
   actionWsConnected, actionWsFailed,
   actionLearnNumPeers, actionConnectedToPeers
 }

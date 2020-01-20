@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { actionStartCall } from "../lib/action-names"
+import { loadAudioStream, loadAudioAndVideoStream } from "../lib/webrtc-manager"
 
 const videoAreaStyle = {
   backgroundColor: 'blue',
@@ -13,11 +14,12 @@ const videoAreaStyle = {
 class ChatPage extends Component {
   constructor() {
     super();
-
   }
 
   componentDidMount() {
     feather.replace()
+    // loadAudioStream() 
+    loadAudioAndVideoStream()
   }
 
   renderChat() {
@@ -25,15 +27,12 @@ class ChatPage extends Component {
         <div className="row">
           <div className="col">
             <h2>Them</h2>
-            <div style={videoAreaStyle}>
-
-            </div>
+            <video id="themvid" playsInline autoPlay muted></video>
           </div>
           <div className="col">
             <h2>You</h2>
-            <div style={videoAreaStyle}>
+            <video id="youvid" playsInline autoPlay></video>
 
-            </div>
           </div>
         </div>
       )

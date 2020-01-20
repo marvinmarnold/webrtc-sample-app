@@ -2,7 +2,6 @@ import React, { Component } from "react"
 import ReactDOM from "react-dom"
 import { Provider } from 'react-redux'
 
-import { loadAudioStream } from "../lib/webrtc-manager"
 import store from '../lib/store'
 
 import PageRouter from "./page-router.jsx"
@@ -10,8 +9,6 @@ import PageRouter from "./page-router.jsx"
 class Layout extends Component {
   constructor() {
     super();
-    loadAudioStream() 
-    // loadAudioAndVideoStream()
   }
 
   render() {

@@ -1,5 +1,5 @@
 import { 
-  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers, actionConnectedToPeers
+  actionAudioEnabled, actionStartCall, actionWsConnected, actionWsFailed, actionLearnNumPeers, actionConnectedToPeers, actionAudioVideoEnabled
 } from "./action-names"
 
 import {
@@ -8,9 +8,9 @@ import {
 
 import { connectToWebsocket } from "./websocket"
 
-const wsUrl = "ws://10.20.20.4:7766"
-const wsUrl = "ws://localhost:7766"
-// const wsUrl = "ws://37.218.241.36:7766"
+// const wsUrl = "ws://10.20.20.4:7766"
+// const wsUrl = "ws://localhost:7766"
+const wsUrl = "ws://37.218.241.36:7766"
 
 function applyStartCall(state, action) {
   const callButton = document.getElementById('callButton');
@@ -24,6 +24,11 @@ function applyStartCall(state, action) {
 
 function applyAudioEnabled(state, action) {
   const newState = Object.assign({}, state, {state: mediaAcquiredState, isAudioAvail: true})
+  return newState
+}
+
+function applyAudioVideoEnabled(state, action) {
+  const newState = Object.assign({}, state, {state: mediaAcquiredState, isAudioAvail: true, isVideoAvail: true})
   return newState
 }
 
@@ -58,6 +63,8 @@ const rootReducer = (state, action) => {
 
     } case actionAudioEnabled: {
       return applyAudioEnabled(state, action)
+    } case actionAudioVideoEnabled: {
+      return applyAudioVideoEnabled(state, action)
 
     } case actionWsConnected: {
       return applyWsConnected(state, action)

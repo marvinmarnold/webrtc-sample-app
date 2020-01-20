@@ -15,12 +15,9 @@ class PageRouter extends Component {
   }
 
   renderPage() {
-    const displayLoading = this.props.stateName === initialState
     const displayChatEror = this.props.stateName === mediaUnavailableState
 
-    if (displayLoading) {
-      return <h1>Please accept audio and video permissions. You may need to refresh this page to force the prompt to appear.</h1>
-    } else if (displayChatEror) {
+    if (displayChatEror) {
       return <ErrorPage />
     } else {
       return <ChatPage />

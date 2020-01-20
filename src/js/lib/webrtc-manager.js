@@ -1,5 +1,5 @@
 import store from "./store"
-import { actionAudioEnabled, actionConnectedToPeers } from "./action-names"
+import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "./action-names"
 import { sendMsg } from "./websocket"
 
 const config = { sdpSemantics: "unified-plan" } // alternatively, plan-b
@@ -15,9 +15,12 @@ const loadAudioAndVideoStream = async () => {
     try {
     const stream = await navigator.mediaDevices.getUserMedia({audio: true, video: true});
     console.log('Received local audio and video streams');
-    localVideo.srcObject = stream;
+    const youVid = document.getElementById("youvid");
+    youVid.srcObject = stream;
     localStream = stream;
+    store.dispatch({type: actionAudioVideoEnabled})
   } catch (e) {
+    console.error(e)
     alert("Unable to access video. Check the connection and reload the page.");
   }
 }
