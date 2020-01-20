@@ -22,6 +22,8 @@ npm start
 ```
 npm install --save-dev webpack
 npx webpack --mode production
+cp dist/index.html .
+cp dist/main.js .
 ```
 
 ## Preparation
@@ -51,9 +53,10 @@ npx webpack --mode production
 - Add a [RTCDataChannel](https://developer.mozilla.org/en-US/docs/Web/API/RTCDataChannel) for metadata 
 
 ## Resources
-https://www.robinwieruch.de/react-redux-tutorial
-https://webrtc.org/start/
-https://webrtc.github.io/samples/
-https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
-https://github.com/cjb/serverless-webrtc/
-https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
+
+- https://www.robinwieruch.de/react-redux-tutorial
+- https://webrtc.org/start/
+- https://webrtc.github.io/samples/
+- https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API
+- https://github.com/cjb/serverless-webrtc/
+- https://www.html5rocks.com/en/tutorials/webrtc/infrastructure/
