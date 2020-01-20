@@ -31,7 +31,6 @@ const call = async () => {
     await onCreateOfferSuccess(offer);
   } catch (error) {
     console.log(`Failed to create session description: ${error.toString()}`);
-
   }
 }
 
@@ -55,7 +54,6 @@ const onCreateOfferSuccess = async (desc) => {
     console.log(`[x/x] Local setLocalDescription complete. Waiting for ICE candidates in order to complete the offer.`);
   } catch (error) {
     console.log(`Failed to set session description: ${error.toString()}`);
-
   }
 }
 

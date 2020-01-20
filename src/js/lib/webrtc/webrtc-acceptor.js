@@ -18,13 +18,13 @@ const acceptOffer = async offer => {
 
   logLocalStreamInfo()
 
-  console.log('Adding audio and video streams to the RTCPeerConnection');
+  console.log('[x/x] Adding audio and video streams to the RTCPeerConnection');
   localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
 
   localConnection.ontrack = handleRemoteStream
 
   try {
-    console.log("About to set local description")
+    console.log("[x/x] About to set local description")
     await localConnection.setRemoteDescription(desc);
     doCreateAnswer();
   } catch (e) {

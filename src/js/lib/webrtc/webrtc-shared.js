@@ -50,8 +50,8 @@ const logLocalStreamInfo = () => {
 function handleRemoteStream(e) {
   const themVid = document.getElementById("themvid");
 
-  store.dispatch({type: actionConnectedToPeers})
   if (themVid.srcObject !== e.streams[0]) {
+    store.dispatch({type: actionConnectedToPeers})
     themVid.srcObject = e.streams[0];
     console.log('[x/x] Received remote stream. Video and audio should appear shortly.');
   }
