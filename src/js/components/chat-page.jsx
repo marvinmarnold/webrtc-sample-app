@@ -3,13 +3,7 @@ import { connect } from "react-redux";
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 import { actionStartCall } from "../lib/action-names"
-import { loadAudioStream, loadAudioAndVideoStream } from "../lib/webrtc-manager"
-
-const videoAreaStyle = {
-  backgroundColor: 'blue',
-  width: '300px',
-  height: '300px'
-}
+import { loadAudioAndVideoStream } from "../lib/webrtc/webrtc-shared"
 
 class ChatPage extends Component {
   constructor() {
@@ -18,7 +12,6 @@ class ChatPage extends Component {
 
   componentDidMount() {
     feather.replace()
-    // loadAudioStream() 
     loadAudioAndVideoStream()
   }
 
@@ -83,6 +76,5 @@ const mapDispatchToProps = dispatch => {
     call: () => dispatch({ type: actionStartCall}),
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(ChatPage)

@@ -1,7 +1,8 @@
 import store from "./store"
 import { actionWsConnected, actionWsFailed, actionLearnNumPeers } from "./action-names"
 
-import { call, acceptOffer, acceptAnswer } from "./webrtc-manager"
+import { call, acceptAnswer } from "./webrtc/webrtc-initiator"
+import { acceptOffer } from "./webrtc/webrtc-acceptor"
 
 let ws
 
@@ -10,10 +11,10 @@ const handleNumPeers = (dat) => {
   store.dispatch({type: actionLearnNumPeers, numPeers})
 
   if (numPeers > 1) {
-    console.log("More than one peer is connected. Going to start call.")
+    console.log("INITIATOR: More than one peer is connected. Going to start call.")
     call()
   } else {
-    console.log("Only one peer is connected. Cannot start call. Waiting for more peers to connect.")
+    console.log("ACCEPTOR: Only one peer is connected. Cannot start call. Waiting for more peers to connect.")
   }
 }
 
@@ -40,19 +41,19 @@ const connectToWebsocket = (wsUri, onSuccess, onError) => {
     const msg = evt.data.substring(2)
 
     if (msgType === 'N') {
-      console.log("Got a message about number of peers")
+      console.log("\nGot a message about number of peers")
       // num peers msg
       handleNumPeers(msg)
     } else if (msgType === 'O') {
       // offer msg
-      console.log("Got an offer message")
+      console.log("\nGot an offer message")
       acceptOffer(msg)
     } else if (msgType === 'A') {
       // answer msg
-      console.log("Got an answer message")
+      console.log("\nGot an answer message")
       acceptAnswer(msg)
     } else {
-      console.log("Unknown message type " + msgType)
+      console.error("Unknown message type " + msgType)
     }
   }
 
@@ -63,7 +64,7 @@ const connectToWebsocket = (wsUri, onSuccess, onError) => {
 }
 
 const sendMsg = msg => {
-  console.log("Sending message to ws server")
+  // console.log("Sending message to ws server")
   ws.send(msg)
 }
 

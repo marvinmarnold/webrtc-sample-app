@@ -5,11 +5,9 @@ import { connect } from "react-redux";
 class ErrorPage extends Component {
   constructor() {
     super();
-
   }
 
   render() {
-
     return (
       <div className="container">
         <h1 className="mt-3">Unable to access media. Please check connections and reload the page.</h1>
