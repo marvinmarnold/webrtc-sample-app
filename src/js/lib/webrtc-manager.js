@@ -2,7 +2,20 @@ import store from "./store"
 import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } from "./action-names"
 import { sendMsg } from "./websocket"
 
-const config = { sdpSemantics: "unified-plan" } // alternatively, plan-b
+const config = { 
+  sdpSemantics: "unified-plan",  // alternatively, plan-b
+  iceServers: [ 
+      {
+          urls: [
+                  "stun.l.google.com:19302",
+                  "stun1.l.google.com:19302",
+                  "stun2.l.google.com:19302",
+                  "stun3.l.google.com:19302",
+                  "stun4.l.google.com:19302"
+          ]
+      }
+    ] 
+  } 
 
 const offerOptions = {
   offerToReceiveAudio: 1,
@@ -177,11 +190,5 @@ function gotRemoteStream(e) {
   }
 }
 
-// add a RTCIceCandidate with addIceCandidate()
-// const candidateInit = "candidate:4234997325 1 udp 2043278322 192.168.0.56 44323 typ host"
-// let iceCandidate = new RTCIceCandidate({candidate: candidateInit})
-
-// get audio and video streams
-// create offer
 
 export { loadAudioStream, loadAudioAndVideoStream, call, acceptOffer, acceptAnswer }
