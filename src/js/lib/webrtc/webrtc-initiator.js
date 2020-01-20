@@ -52,7 +52,7 @@ const onCreateOfferSuccess = async (desc) => {
 
   try {
     await localConnection.setLocalDescription(desc);
-    console.log(`Local setLocalDescription complete`);
+    console.log(`[x/x] Local setLocalDescription complete. Waiting for ICE candidates in order to complete the offer.`);
   } catch (error) {
     console.log(`Failed to set session description: ${error.toString()}`);
 

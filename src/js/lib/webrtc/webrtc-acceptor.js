@@ -3,7 +3,7 @@ import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } f
 import { sendMsg } from "../websocket"
 import { logLocalStreamInfo, handleRemoteStream, localStream, config } from './webrtc-shared'
 
-let localConnection
+let localConnection, answer
 
 /*
   Accept offer initiated by counter party
