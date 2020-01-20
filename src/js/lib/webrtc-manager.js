@@ -6,13 +6,18 @@ const config = {
   sdpSemantics: "unified-plan",  // alternatively, plan-b
   iceServers: [ 
       {
-          urls: [
-                  "stun.l.google.com:19302",
-                  "stun1.l.google.com:19302",
-                  "stun2.l.google.com:19302",
-                  "stun3.l.google.com:19302",
-                  "stun4.l.google.com:19302"
-          ]
+        urls: [
+          "stun.l.google.com:19302",
+          "stun1.l.google.com:19302",
+          "stun2.l.google.com:19302",
+          "stun3.l.google.com:19302",
+          "stun4.l.google.com:19302"
+        ]
+      },
+      {
+        urls: [
+          "stun.stunprotocol.org:3478"
+        ]
       }
     ] 
   } 
