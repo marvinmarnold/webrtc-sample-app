@@ -15,7 +15,8 @@ class PageRouter extends Component {
   }
 
   renderPage() {
-    const displayChatEror = this.props.stateName === mediaUnavailableState
+    const displayChatEror = this.props.stateName === mediaUnavailableState || 
+      this.props.stateName === initialState
 
     if (displayChatEror) {
       return <ErrorPage />
