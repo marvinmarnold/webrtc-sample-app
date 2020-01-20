@@ -21,8 +21,8 @@ Depends on a websocket based [signaling server](https://github.com/marvinmarnold
 - [x] Migrate to webpack
 - [x] Create a websocket signaling server locally
 - [x] Create an offer and send over hardcoded websocket to establish p2p connection
-- [ ] Deploy signaling server somewhere
-- [ ] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
+- [x] Deploy signaling server somewhere
+- [x] Add a MediaStream with a [MediaStreamTrack](https://developer.mozilla.org/en-US/docs/Web/API/MediaStreamTrack) for video  
 - [ ] Allow user to input connection details
 
 ## Wishlist

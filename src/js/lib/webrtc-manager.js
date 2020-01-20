@@ -59,6 +59,11 @@ const call = async () => {
     console.log(`Using audio device: ${audioTracks[0].label}`);
   }
 
+  const videoTracks = localStream.getVideoTracks();
+  if (videoTracks.length > 0) {
+    console.log(`Using video device: ${videoTracks[0].label}`);
+  }
+
   console.log('RTCPeerConnection configuration:', config);
   localConnection = new RTCPeerConnection(config);
   // makeDataChannel()
@@ -163,11 +168,13 @@ function onSetLocalSuccess() {
 }
 
 function gotRemoteStream(e) {
+  const themVid = document.getElementById("themvid");
+
   store.dispatch({type: actionConnectedToPeers})
-  // if (remoteVideo.srcObject !== e.streams[0]) {
-  //   remoteVideo.srcObject = e.streams[0];
-  //   console.log('pc2 received remote stream');
-  // }
+  if (themVid.srcObject !== e.streams[0]) {
+    themVid.srcObject = e.streams[0];
+    console.log('received remote stream');
+  }
 }
 
 // add a RTCIceCandidate with addIceCandidate()
