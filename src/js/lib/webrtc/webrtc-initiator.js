@@ -39,15 +39,15 @@ const loadAudioAndVideoStream = async () => {
   }
 }
 
-// Helpful for testing on computer without webcam
-const loadAudioStream = async () => {
-    try {
-    const stream = await navigator.mediaDevices.getUserMedia({audio: true});
-    console.log('Received local audio stream');
-    localStream = stream;
-    store.dispatch({type: actionAudioEnabled})
-  } catch (e) {
-    alert("Unable to access microphone. Check the connection and reload the page.");
+const logLocalStreamInfo = () => {
+  const audioTracks = localStream.getAudioTracks();
+  if (audioTracks.length > 0) {
+    console.log(`Using audio device: ${audioTracks[0].label}`);
+  }
+
+  const videoTracks = localStream.getVideoTracks();
+  if (videoTracks.length > 0) {
+    console.log(`Using video device: ${videoTracks[0].label}`);
   }
 }
 
@@ -64,33 +64,21 @@ const onIceCandidate = candidate => {
 }
 
 const call = async () => {
-  console.log('Starting call');
+  console.log('Initiating  call');
 
-  startTime = window.performance.now();
-  const audioTracks = localStream.getAudioTracks();
+  logLocalStreamInfo()
 
-  if (audioTracks.length > 0) {
-    console.log(`Using audio device: ${audioTracks[0].label}`);
-  }
-
-  const videoTracks = localStream.getVideoTracks();
-  if (videoTracks.length > 0) {
-    console.log(`Using video device: ${videoTracks[0].label}`);
-  }
-
-  console.log('RTCPeerConnection configuration:', config);
+  // console.log('RTCPeerConnection configuration:', config);
   localConnection = new RTCPeerConnection(config);
-  // makeDataChannel()
-  console.log(localConnection.connectionState)
   localConnection.onicecandidate = onIceCandidate
 
-  console.log('Adding audio and video streams to the RTCPeerConnection');
+  // console.log('Adding audio and video streams to the RTCPeerConnection');
   localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
 
   localConnection.ontrack = gotRemoteStream
 
   try {
-    console.log('creating offer');
+    console.log('[1/7] Creating initial offer');
     const offer = await localConnection.createOffer(offerOptions);
     await onCreateOfferSuccess(offer);
   } catch (e) {
@@ -136,11 +124,7 @@ const acceptOffer = async offer => {
     }
   }
 
-  const audioTracks = localStream.getAudioTracks();
-
-  if (audioTracks.length > 0) {
-    console.log(`Using audio device: ${audioTracks[0].label}`);
-  }
+  logLocalStreamInfo()
 
   console.log('Adding audio and video streams to the RTCPeerConnection');
   localStream.getTracks().forEach(track => localConnection.addTrack(track, localStream));
@@ -158,9 +142,7 @@ const acceptOffer = async offer => {
 
 const onCreateOfferSuccess = async (desc) => {
   console.log(`Offer on local machine`);
-  // console.log(desc.sdp);
 
-  console.log('localConnection setLocalDescription start');
   try {
     await localConnection.setLocalDescription(desc);
     onSetLocalSuccess();
