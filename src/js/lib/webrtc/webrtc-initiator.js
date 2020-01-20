@@ -3,6 +3,8 @@ import { actionAudioEnabled, actionAudioVideoEnabled, actionConnectedToPeers } f
 import { sendMsg } from "../websocket"
 import { logLocalStreamInfo, handleRemoteStream, localStream, config } from './webrtc-shared'
 
+let localConnection
+
 const offerOptions = {
   offerToReceiveAudio: 1,
   offerToReceiveVideo: 1
